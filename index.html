@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专业脚本定制服务 - 高效自动化解决方案</title>
+    
+    <!-- CDN引入 -->
+    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(38, 87, 253, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #2657FD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #888888;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid rgba(38, 87, 253, 0.2);
+            border-radius: 16px;
+            background: rgba(38, 87, 253, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2657FD;
+            display: block;
+        }
+
+        .stat-label {
+            color: #cccccc;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #ffffff;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .bento-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .bento-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(38, 87, 253, 0.5);
+            box-shadow: 0 20px 40px rgba(38, 87, 253, 0.2);
+        }
+
+        .bento-item.large {
+            grid-column: span 2;
+        }
+
+        .bento-icon {
+            font-size: 3rem;
+            color: #2657FD;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .bento-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .bento-description {
+            color: #888888;
+            line-height: 1.6;
+        }
+
+        .bento-highlight {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(38, 87, 253, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        /* Process Section */
+        .process {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(38, 87, 253, 0.05) 50%, transparent 100%);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #2657FD;
+            opacity: 0.3;
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .process-icon {
+            font-size: 2.5rem;
+            color: #2657FD;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .process-description {
+            color: #888888;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #ffffff;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: #888888;
+            margin-bottom: 3rem;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, #2657FD 0%, #4F7BFF 100%);
+            color: #ffffff;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(38, 87, 253, 0.4);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            animation-delay: -2s;
+        }
+
+        .floating-element:nth-child(3) {
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bento-item.large {
+                grid-column: span 1;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Elements -->
+    <div class="floating-element" style="top: 10%; left: 10%; font-size: 2rem; color: #2657FD;">
+        <i class="fas fa-code"></i>
+    </div>
+    <div class="floating-element" style="top: 20%; right: 15%; font-size: 1.5rem; color: #2657FD;">
+        <i class="fas fa-robot"></i>
+    </div>
+    <div class="floating-element" style="bottom: 30%; left: 20%; font-size: 2.5rem; color: #2657FD;">
+        <i class="fas fa-cog"></i>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">专业脚本定制</h1>
+                <p class="hero-subtitle">告别低效，把时间留给更重要的事！一对一量身定制专属自动化解决方案</p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item slide-in-left">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">成功案例</span>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">快速响应</span>
+                    </div>
+                    <div class="stat-item slide-in-right">
+                        <span class="stat-number">99%</span>
+                        <span class="stat-label">客户满意度</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title fade-in">服务范围</h2>
+            
+            <div class="bento-grid">
+                <div class="bento-item large fade-in">
+                    <div class="bento-highlight"></div>
+                    <i class="fas fa-briefcase bento-icon"></i>
+                    <h3 class="bento-title">办公自动化</h3>
+                    <p class="bento-description">数据处理、批量操作、文档自动化、表格处理等办公场景的自动化脚本开发，大幅提升工作效率</p>
+                </div>
+                
+                <div class="bento-item slide-in-right">
+                    <div class="bento-highlight"></div>
+                    <i class="fas fa-bolt bento-icon"></i>
+                    <h3 class="bento-title">秒杀抢购</h3>
+                    <p class="bento-description">平台抢单、商品秒杀、自动下单等高速操作脚本</p>
+                </div>
+                
+                <div class="bento-item slide-in-left">
+                    <div class="bento-highlight"></div>
+                    <i class="fas fa-gamepad bento-icon"></i>
+                    <h3 class="bento-title">游戏自动化</h3>
+                    <p class="bento-description">游戏挂机、自动任务、升级辅助等游戏脚本开发</p>
+                </div>
+                
+                <div class="bento-item fade-in">
+                    <div class="bento-highlight"></div>
+                    <i class="fas fa-calendar-check bento-icon"></i>
+                    <h3 class="bento-title">日常签到</h3>
+                    <p class="bento-description">各平台自动签到、积分获取、任务完成等日常操作自动化</p>
+                </div>
+                
+                <div class="bento-item slide-in-right">
+                    <div class="bento-highlight"></div>
+                    <i class="fas fa-mobile-alt bento-icon"></i>
+                    <h3 class="bento-title">手机脚本</h3>
+                    <p class="bento-description">移动端自动化脚本、APP操作自动化等移动设备脚本开发</p>
+                </div>
+                
+                <div class="bento-item slide-in-left">
+                    <div class="bento-highlight"></div>
+                    <i class="fas fa-keyboard bento-icon"></i>
+                    <h3 class="bento-title">按键精灵/易语言</h3>
+                    <p class="bento-description">传统按键精灵、易语言等工具的脚本开发和定制需求</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title fade-in">定制流程</h2>
+            <p style="text-align: center; color: #888888; font-size: 1.2rem; margin-bottom: 2rem;" class="fade-in">安心透明，本人作者，非中介，直接沟通更高效</p>
+            
+            <div class="process-grid">
+                <div class="process-step fade-in">
+                    <div class="process-number">01</div>
+                    <i class="fas fa-comments process-icon"></i>
+                    <h3 class="process-title">需求沟通</h3>
+                    <p class="process-description">告诉我你的具体想法和功能要求，详细了解您的使用场景</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">02</div>
+                    <i class="fas fa-calculator process-icon"></i>
+                    <h3 class="process-title">专业报价</h3>
+                    <p class="process-description">根据难度和工作量，给你合理定价，透明公开无隐藏费用</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">03</div>
+                    <i class="fas fa-code process-icon"></i>
+                    <h3 class="process-title">高效制作</h3>
+                    <p class="process-description">付款即开始定制，承诺编写速度快，保证质量</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">04</div>
+                    <i class="fas fa-bug process-icon"></i>
+                    <h3 class="process-title">功能测试</h3>
+                    <p class="process-description">确保脚本稳定、高效运行，多环境测试验证</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="process-number">05</div>
+                    <i class="fas fa-graduation-cap process-icon"></i>
+                    <h3 class="process-title">交付完成</h3>
+                    <p class="process-description">确认无误，提供使用指导，包教包会！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2 class="cta-title">开始您的自动化之旅</h2>
+                <p class="cta-description">专业、高效、可靠的脚本定制服务，让技术为您的生活和工作赋能</p>
+                <a href="#" class="cta-button">
+                    <i class="fas fa-rocket"></i>
+                    立即咨询定制
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelectorAll('.floating-element');
+            const speed = 0.5;
+
+            parallax.forEach(element => {
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Add hover effects to bento items
+        document.querySelectorAll('.bento-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + (element.textContent.includes('%') ? '%' : element.textContent.includes('h') ? 'h' : '+');
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + (element.textContent.includes('%') ? '%' : element.textContent.includes('h') ? 'h' : '+');
+                }
+            }, 16);
+        }
+
+        // Trigger counter animation when stats come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const number = entry.target.querySelector('.stat-number');
+                    const text = number.textContent;
+                    const value = parseInt(text);
+                    
+                    if (!isNaN(value)) {
+                        number.textContent = '0' + (text.includes('%') ? '%' : text.includes('h') ? 'h' : '+');
+                        animateCounter(number, value);
+                    }
+                    
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+</body>
+</html> 
